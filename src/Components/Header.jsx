@@ -65,6 +65,7 @@ function Header() {
     setTimeout(() => {
       setShowSearch(false);
     }, 1000);
+    setQuery("");
   }
 
   const search = () => {
@@ -76,7 +77,7 @@ function Header() {
       className={`${
         !show
           ? "h-[4.2rem] md:h-[4.2rem] py-4 w-full flex flex-col items-start justify-between bg-[rgba(0,0,0,.5)] z-50"
-          : "md:h-20 h-full w-full flex items-start flex-col py-4 divide-y divide-green-700 justify-between relative md:bg-[rgba(0,0,0,.5)] bg-[rgba(0,0,0)] z-50"
+          : "md:h-20 h-full w-full flex items-start flex-col py-4  divide-y divide-green-700 justify-between relative md:bg-[rgba(0,0,0,.5)] bg-[rgba(0,0,0)] z-50"
       } ${scrollState}`}
     >
       <Container className="flex items-center h-full justify-between relative">

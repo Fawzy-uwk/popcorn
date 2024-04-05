@@ -6,8 +6,7 @@ import { useSelector } from "react-redux";
 import Container from "../Ui/Container";
 import LazyLoadImg from "./LazyLoadImg";
 import Button from "../Ui/Button";
-import {useFetch} from "../hooks/useFetch";
-
+import { useFetch } from "../hooks/useFetch";
 
 const Content = styled.div`
   width: 800px;
@@ -39,6 +38,13 @@ function Banner() {
   const [bg, setBg] = useState(null);
   const [query, setQuery] = useState("");
 
+  useEffect(() => {
+    const background =
+      url.backdrop +
+      data?.results?.[Math.floor(Math.random() * 20)]?.backdrop_path;
+    setBg(background);
+  }, [data]);
+
   function handleSubmit(e) {
     e.preventDefault();
     if (event.key === "Enter" && query.length > 0) {
@@ -46,25 +52,17 @@ function Banner() {
     }
   }
 
-  useEffect(() => {
-    const background =
-      url.backdrop +
-      data?.results?.[Math.floor(Math.random() * 20)]?.backdrop_path;
-    setBg(background);
-  }, [data, url]);
   return (
     <div className="banner flex-col">
-    
       {!loading && (
         <div className="backdrop-img">
           <LazyLoadImg src={bg} />
         </div>
       )}
-      
+
       <div className="opacity-layer"></div>
-      
+
       <Container className="flex items center h-full justify-center">
-      
         <Content className="mt-12 md:mt-0">
           <H1>
             Welcome to{" "}

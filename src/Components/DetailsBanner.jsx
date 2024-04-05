@@ -8,7 +8,8 @@ import Genres from "./Genres";
 import CircleRating from "./CircleRating";
 import { PlayBtn } from "./PlayBtn";
 import VideoPopup from "./VideoPopUp";
-import {useFetch} from "../hooks/useFetch";
+import { useFetch } from "../hooks/useFetch";
+import LazyLoadImg from "./LazyLoadImg";
 
 /* eslint-disable react/prop-types */
 function DetailsBanner({ video, crew }) {
@@ -18,8 +19,6 @@ function DetailsBanner({ video, crew }) {
 
   const { mediaType, id } = useParams();
   const { data, loading } = useFetch(`/${mediaType}/${id}`);
-
- 
 
   const director = crew?.filter((f) => f.job === "Director");
   const writer = crew?.filter(
@@ -57,7 +56,9 @@ function DetailsBanner({ video, crew }) {
           {!!data && (
             <React.Fragment>
               <div className="backdrop-img">
-                <img src={`${url.backdrop || ""}${data.backdrop_path || ""}`} />
+                <LazyLoadImg
+                  src={`${url.backdrop || ""}${data.backdrop_path || ""}`}
+                />
               </div>
               <div className="opacity-layer"></div>
               <Container>
